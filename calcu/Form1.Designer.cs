@@ -42,15 +42,14 @@
             this.num1 = new System.Windows.Forms.NumericUpDown();
             this.num2 = new System.Windows.Forms.NumericUpDown();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.wow = new System.Windows.Forms.PictureBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.usarresp = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.num1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.wow)).BeginInit();
             this.SuspendLayout();
             // 
@@ -167,6 +166,7 @@
             // 
             // num1
             // 
+            this.num1.DecimalPlaces = 2;
             this.num1.Font = new System.Drawing.Font("Snap ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.num1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.num1.Location = new System.Drawing.Point(26, 158);
@@ -179,10 +179,11 @@
             this.num1.Size = new System.Drawing.Size(120, 28);
             this.num1.TabIndex = 9;
             this.num1.ThousandsSeparator = true;
-            this.num1.ValueChanged += new System.EventHandler(this.num1_ValueChanged_1);
+            this.num1.ValueChanged += new System.EventHandler(this.num1_ValueChanged);
             // 
             // num2
             // 
+            this.num2.DecimalPlaces = 2;
             this.num2.Font = new System.Drawing.Font("Snap ITC", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.num2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.num2.Location = new System.Drawing.Point(228, 158);
@@ -207,27 +208,6 @@
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(26, 239);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(75, 157);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 12;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(-7, -2);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(371, 132);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 13;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Visible = false;
-            // 
             // wow
             // 
             this.wow.Image = ((System.Drawing.Image)(resources.GetObject("wow.Image")));
@@ -244,15 +224,40 @@
             this.notifyIcon1.Text = "notifyIcon1";
             this.notifyIcon1.Visible = true;
             // 
+            // usarresp
+            // 
+            this.usarresp.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.usarresp.Enabled = false;
+            this.usarresp.Font = new System.Drawing.Font("Old English Text MT", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usarresp.Location = new System.Drawing.Point(26, 297);
+            this.usarresp.Name = "usarresp";
+            this.usarresp.Size = new System.Drawing.Size(153, 57);
+            this.usarresp.TabIndex = 15;
+            this.usarresp.Text = "Usar resposta como operando 1";
+            this.usarresp.UseVisualStyleBackColor = false;
+            this.usarresp.Click += new System.EventHandler(this.usarresp_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button1.Font = new System.Drawing.Font("Papyrus", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(198, 297);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(150, 57);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "LIMPAR";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(360, 408);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.usarresp);
             this.Controls.Add(this.wow);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.num2);
             this.Controls.Add(this.num1);
@@ -267,12 +272,10 @@
             this.Controls.Add(this.op1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "SUEDAM CALCS";
+            this.Text = "ALEX MURALHA CALKS";
             ((System.ComponentModel.ISupportInitialize)(this.num1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.num2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.wow)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -293,10 +296,11 @@
         private System.Windows.Forms.NumericUpDown num1;
         private System.Windows.Forms.NumericUpDown num2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox wow;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button usarresp;
+        private System.Windows.Forms.Button button1;
     }
 }
 

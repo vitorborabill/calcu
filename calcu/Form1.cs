@@ -16,12 +16,18 @@ namespace calcu
         public Form1()
         {
             InitializeComponent();
+            timer1.Tick += Timer1_Tick;
+            botresposta();
         }
 
         void atvop(string Op)
         {
             sinal.Text = Op;
             igual.Enabled = true;   
+        }
+        void botresposta()
+        {
+            usarresp.Enabled = !(result.Text == "");
         }
         void travasemsinal()
         {
@@ -51,9 +57,9 @@ namespace calcu
 
         private void igual_Click(object sender, EventArgs e)
         {
-            float n1, n2, resul = 0;
-            n1 = (float)num1.Value;
-            n2 = (float)num2.Value;
+            double n1, n2, resul = 0;
+            n1 = (double)num1.Value;
+            n2 = (double)num2.Value;
             if (sinal.Text == mais.Text)
                 resul = n1 + n2;
             else if (sinal.Text == menos.Text)
@@ -62,21 +68,20 @@ namespace calcu
                 resul = n1 * n2;
             else if (sinal.Text == div.Text)
                 resul = n1 / n2;
-
             result.Text = resul.ToString();
+            botresposta();
         }
 
         private void num2_ValueChanged(object sender, EventArgs e)
         {
+            travasemsinal();
             if (num2.Value == 69 || num1.Value == 69 || result.Text == "69")
             {
                 wow.Visible = true;
+                timer1.Interval = 3400;
+                timer1.Start();
             }
-            else
-            {
-                wow.Visible = false;
-            }
-            travasemsinal();
+            
         }
 
         private void num1_ValueChanged(object sender, EventArgs e)
@@ -84,10 +89,8 @@ namespace calcu
             if (num2.Value == 69 || num1.Value == 69 || result.Text == "69")
             {
                 wow.Visible = true;
-            }
-            else
-            {
-                wow.Visible = false;
+                timer1.Interval = 3400;
+                timer1.Start();
             }
         }
 
@@ -96,10 +99,8 @@ namespace calcu
             if (num2.Value == 69 || num1.Value == 69 || result.Text == "69")
             {
                 wow.Visible = true;
-            }
-            else
-            {
-                wow.Visible = false;
+                timer1.Interval = 3400;
+                timer1.Start();
             }
         }
 
@@ -107,12 +108,35 @@ namespace calcu
         {
             if (num2.Value == 69 || num1.Value == 69 || result.Text == "69")
             {
-                wow.Visible = true;
+                wow.Visible = true; 
+                timer1.Interval = 3400; 
+                timer1.Start();
             }
-            else
-            {
-                wow.Visible = false;
-            }
+        }
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            wow.Visible = false;
+            timer1.Stop(); 
+        }
+
+        private void usarresp_Click(object sender, EventArgs e)
+        {
+            double d = Double.Parse(result.Text);
+            num1.Value = (decimal)d;
+            result.Text = "";
+            System.Threading.Thread.Sleep(3400);
+            botresposta();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            num1.Value = 0;
+            num2.Value = 0;
+            result.Text = "";
+            sinal.Text = "...";
+            System.Threading.Thread.Sleep(2000);
+            botresposta();
+            travasemsinal();
         }
     }
 }
